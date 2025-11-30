@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Tutor · Bright & Joyful</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Quicksand:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --violet: #ff7eb3;
+      --teal: #7ee8fa;
+      --purple: #a29bfe;
+      --coral: #ff9aab;
+      --pastel-blue: #c7f0f4;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', system-ui, sans-serif;
+      background: linear-gradient(135deg, #ffecf1, #e0f7ff, #f0e6ff, #e6fff0);
+      background-size: 400% 400%;
+      animation: gradientBG 18s ease infinite;
+      color: #222;
+      min-height: 100vh;
+      padding: 0;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* === БЕЛОРУССКИЙ ОРНАМЕНТ (по бокам) === */
+    .ornament-left,
+    .ornament-right {
+      position: fixed;
+      top: 0;
+      width: 100px;
+      height: 100%;
+      z-index: 0;
+      background-image: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M0,15 H100 V20 H0 Z M0,80 H100 V85 H0 Z' fill='%23ff7eb3' opacity='0.1'/%3E%3Cpath d='M15,0 V100 H20 V0 Z M80,0 V100 H85 V0 Z' fill='%237ee8fa' opacity='0.1'/%3E%3Cpath d='M20,20 L40,20 L40,40 L60,40 L60,20 L80,20 L80,40 L60,40 L60,60 L80,60 L80,80 L60,80 L60,60 L40,60 L40,80 L20,80 L20,60 L40,60 L40,40 L20,40 Z' fill='none' stroke='%23a29bfe' stroke-width='1.5' opacity='0.3'/%3E%3C/svg%3E");
+      background-repeat: repeat-y;
+      pointer-events: none;
+    }
+    .ornament-left { left: 0; }
+    .ornament-right { right: 0; }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .logo {
+      font-family: 'Comfortaa', cursive;
+      font-weight: 700;
+      font-size: 1.8rem;
+      background: linear-gradient(90deg, var(--violet), var(--teal));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1.5rem;
+    }
+
+    .avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      border: 4px solid white;
+      box-shadow: 0 8px 25px rgba(162, 155, 254, 0.5);
+      overflow: hidden;
+      position: relative;
+      background: #eee;
+    }
+
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: #666;
+      font-weight: bold;
+      background: linear-gradient(135deg, #ff7eb3, #7ee8fa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    h1 {
+      font-family: 'Comfortaa', cursive;
+      font-size: 2.8rem;
+      background: linear-gradient(90deg, #ff4d94, #21d4fd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 1.4rem;
+      color: #444;
+      margin-bottom: 1.2rem;
+    }
+
+    .contact {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+      font-weight: 600;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    }
+
+    /* === КНОПКИ СВЯЗИ === */
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Comfortaa', cursive;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--violet);
+    }
+    .btn-primary:hover,
+    .btn-primary:focus {
+      background: var(--violet);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 126, 179, 0.6);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.8);
+      color: #222;
+    }
+    .btn-secondary:hover,
+    .btn-secondary:focus {
+      background: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(126, 232, 250, 0.5);
+    }
+
+    /* === СЕКЦИЯ УСЛУГ === */
+    .section-title {
+      text-align: center;
+      font-family: 'Comfortaa', cursive;
+      font-size: 2rem;
+      margin: 3rem 0 2rem;
+      color: #ff4d94;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(162, 155, 254, 0.3);
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--teal), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .service-title {
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: #333;
+    }
+
+    /* === ПРЕИМУЩЕСТВА === */
+    .benefits {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .benefit {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: white;
+      padding: 0.8rem 1.4rem;
+      border-radius: 50px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    /* Адаптив */
+    @media (max-width: 600px) {
+      h1 { font-size: 2.1rem; }
+      .subtitle { font-size: 1.2rem; }
+      .avatar { width: 130px; height: 130px; }
+      .btn { padding: 10px 20px; font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ornament-left"></div>
+  <div class="ornament-right"></div>
+
+  <div class="container">
+    <header>
+      <div class="logo">✨ LinguaIrina</div>
+      
+      <!-- ЗАМЕНА ФОТО — МЕСТО ДЛЯ ТВОЕГО ИЗОБРАЖЕНИЯ -->
+      <div class="avatar">
+        <div class="avatar-placeholder">👩‍🏫</div>
+      </div>
+      <p style="font-size: 0.8rem; color: #888; margin-top: 0.5rem;">
+      <h1>Speak English with Irina Us!</h1>
+      <div class="subtitle">Персональные уроки английского для детей 8–10 лет</div>
+      
+      <div class="contact">
+        <div class="contact-item">📩 irinauss2013@mail.ru</div>
+        <div class="contact-item">📱 +375 (29) 194-12-51</div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn btn-primary" onclick="alert('Напишите мне на почту — назначим пробный урок! 🌟')">
+          Записаться на урок
+        </button>
+        <button class="btn btn-secondary" onclick="window.open('https://wa.me/375291234567', '_blank')">
+          💬 WhatsApp
+        </button>
+      </div>
+    </header>
+
+    <h2 class="section-title">Что я предлагаю</h2>
+    <div class="services">
+      <div class="service-card">
+        <div class="service-icon">📚</div>
+        <div class="service-title">Игровые уроки</div>
+        <div>Слова, глаголы, диалоги — через игры и истории!</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎧</div>
+        <div class="service-title">Разговорная практика</div>
+        <div>Уверенно говорим на простые темы уже с первого месяца.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌈</div>
+        <div class="service-title">Яркие материалы</div>
+        <div>Учим английский через волшебные миры и персонажей.</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Почему со мной?</h2>
+    <div class="benefits">
+      <div class="benefit">🌟 Индивидуальный подход</div>
+      <div class="benefit">🎮 Игровая методика</div>
+      <div class="benefit">💬 Английский с первого урока</div>
+      <div class="benefit">🌍 Международные материалы</div>
+    </div>
+
+    <footer>
+      © 2025 English Tutor · Минск, Беларусь
+    </footer>
+  </div>
+</body>
+</html>
